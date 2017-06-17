@@ -6,7 +6,7 @@ public class Turno {
 	private int posicao = 0;
 	
 	
-	public void setTurno(Jogador[] j){
+	public  Turno(Jogador[] j){
 		this.jogadores = j;	
 	}
 	

@@ -5,15 +5,24 @@ import java.util.List;
 
 public class Mesa {
 
+	
 	private int manilha;
 	private Carta[] mesa;
-	private Jogador[] MapeamentoJogadores;
 	private int numerosCartas = 1;
 	private List<Jogador> jogadores = new ArrayList<Jogador>();
-	private Turno turno = new Turno();
+	private Turno turno;
 	private int rodadeJogador = 0;
-	private int JogadorComMaiorCartaNaMesa = -1;
-	private String valoresEmpachado = "";
+	
+	private ForcaDasCartas forcaDasCartas;
+	
+	public Mesa(Jogador... j){
+		
+		for(Jogador jogador : j)
+			jogadores.add(jogador);
+			
+			mesa = new Carta[jogadores.size()];
+			turno = new Turno(factoryTurno(rodadeJogador));
+	}
 
 	
 	public void addJogador(Jogador... j){
@@ -21,21 +30,15 @@ public class Mesa {
 		jogadores.add(jogador);
 		
 		mesa = new Carta[jogadores.size()];
-		MapeamentoJogadores = new Jogador[jogadores.size()];
+		turno = new Turno(factoryTurno(rodadeJogador));
+		
 	}
 	
 	
 	public int NumerosJogadores(){
 		return jogadores.size();
 	}
-	public Jogador getJogadorFez(){
-		if(JogadorComMaiorCartaNaMesa == -1){
-			if(getMaiorCarta() == null)return null;
-		}
-		Jogador j = MapeamentoJogadores[JogadorComMaiorCartaNaMesa];
-		JogadorComMaiorCartaNaMesa = -1;
-		return j;
-	}
+
 	
 	public void DarAsCartas(){
 		
@@ -47,27 +50,7 @@ public class Mesa {
 	
 	}
 	
-	public int getNumerosCartas() {
-		return numerosCartas;
-	}
-	public Carta getMaiorCarta(){
-		Carta c = null;
-		for(int x = 0; x < mesa.length && mesa[x] != null;x++){
-			Boolean repetido = false;
-			for(char valor : valoresEmpachado.toCharArray())
-			{
-			if(Carta.Valor[mesa[x].getValor()].equals(valor+"")){
-				repetido = true;
-				break;
-				}
-			}
-			if(repetido)continue;
-			JogadorComMaiorCartaNaMesa = x;
-			return mesa[x];
-			
-		}
-		return c;
-	}
+	
 	public void vira(Carta c){
 		int valor = c.getValor();
 		if(valor < 0 || valor > 9)throw new ArrayIndexOutOfBoundsException();
@@ -77,7 +60,13 @@ public class Mesa {
 			valor++;
 		
 		manilha = valor;
+		
 	}
+	
+	public void ComeçarTurno(){
+		forcaDasCartas = new ForcaDasCartas(mesa, manilha);
+	}
+	
 	public String getManilha(){
 		return Carta.Valor[manilha];
 	}
@@ -85,88 +74,16 @@ public class Mesa {
 	public void setNumerosCartas(int numerosCartas) {
 		this.numerosCartas = numerosCartas;
 	}
-	public void CartaJogada(Jogador j,Carta c){
-		
-		if(mesa[0] == null){
-		   mesa[0] = c;
-		   MapeamentoJogadores[0] = j;
-		}
-		else{
-			if(c.getValor() == manilha){
-				boolean ManilhaNaMesa = false;
-				int quantidadeManilhas = 0;
-				for(int x = 0; x < mesa.length && mesa[x] != null;x++){
-					if(mesa[x].getValor() == c.getValor())
-						{
-						     ManilhaNaMesa = true;
-							if(c.getNaipe().ordinal() < mesa[x].getNaipe().ordinal()){
-								percorrerMesa(x, j, c);	
-								return;
-							}
-							else{
-								quantidadeManilhas++;
-							}
-						}
-				}
-				if(!ManilhaNaMesa){
-					percorrerMesa(0, j, c);
-				}else{
-					percorrerMesa(quantidadeManilhas, j, c);
-				}
-			}
-			else{
-				
-				for(int x = 0; x < mesa.length && mesa[x] != null;x++){
-					if(mesa[x].getValor() != manilha){
-						if(Baralho.valorDasCartas.indexOf(Carta.Valor[c.getValor()]) > Baralho.valorDasCartas.indexOf(Carta.Valor[mesa[x].getValor()])){
-							percorrerMesa(x, j, c);
-							return;
-						}
-						else if(Baralho.valorDasCartas.indexOf(Carta.Valor[c.getValor()]) == Baralho.valorDasCartas.indexOf(Carta.Valor[mesa[x].getValor()])){
-							percorrerMesa(x, j, c);
-							valoresEmpachado += Carta.Valor[c.getValor()];
-							return;
-						}
-						else if(x == mesa.length-1){
-							mesa[x] = c;
-							MapeamentoJogadores[x] = j;
-							return;
-						}
-						else {
-							if(mesa[x+1] == null){
-								mesa[x+1] = c;
-								MapeamentoJogadores[x+1] = j;
-								break;
-							}
-						}
-					}
-				}
-			}
-		}
-	}
+
 	
-	private void percorrerMesa(int posicao, Jogador j, Carta c){
-		Carta aux = mesa[posicao];
-		Jogador jAux = j;
-		for(int x = posicao; x  < mesa.length-1 && mesa[x] != null;x++){
-			Carta aux2 = mesa[x+1];
-			mesa[x+1] = aux;
-			aux = aux2; 
-			
-			Jogador jAux2 = MapeamentoJogadores[x+1];
-			MapeamentoJogadores[x+1] = jAux;
-			jAux = jAux2;
-		}
-		mesa[posicao] = c;
-		MapeamentoJogadores[posicao] = j;
-	}
-	private void factoryTurno(int posicao){
+	
+	private Jogador[] factoryTurno(int posicao){
 		Jogador[] j = new Jogador[jogadores.size()];
-		
+		if(jogadores.size() <= 0)return null;
 		int x = posicao+1;
 		int index = 0;
 		while( x != posicao){
-			if(x >= jogadores.size()){
+			if(x == jogadores.size()){
 				x = 0;
 				j[index] = jogadores.get(x);
 				index++;
@@ -175,6 +92,17 @@ public class Mesa {
 			j[index] = jogadores.get(x);
 			x++; index++;
 		}
-		turno.setTurno(j);
+		return j;
 	}
+
+
+	/**
+	 * @return the forcaDasCartas
+	 */
+	public ForcaDasCartas getForcaDasCartas() {
+		return forcaDasCartas;
+	}
+
+
+
 }
