@@ -11,7 +11,7 @@ public class Jogador {
 	private List<Carta> mao = new ArrayList<Carta>();
 	
 	public Jogador(String nome){
-		this.nome = nome;
+		this.setNome(nome);
 	}
 	public Carta[] listagem(){
 		return (Carta[]) mao.toArray();
@@ -35,6 +35,18 @@ public class Jogador {
 		for(int x = 0; x < quantidade; x++){
 			jogador.receberCarta(b.DarCarta());
 		}
+	}
+	/**
+	 * @return the nome
+	 */
+	public String getNome() {
+		return nome;
+	}
+	/**
+	 * @param nome the nome to set
+	 */
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 	

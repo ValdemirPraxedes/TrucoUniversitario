@@ -11,7 +11,7 @@ public class Baralho {
 	 * 	
 	 */
 	private Carta[] baralho = new Carta[40];
-	
+	public static final String valorDasCartas = "4567QJKA23";
 	private int quantidade_de_cartas;
 	
 	public Baralho(){

@@ -45,7 +45,7 @@ public class JogadorTest {
 		Jogador j3 = new Jogador("ana");
 		Jogador j4 = new Jogador("Maria");
 		
-		Mesa m = new Mesa();  	
+		 Mesa m = new Mesa();  	
 		 m.addJogador(j1,j2,j3,j4);
 		 m.setNumerosCartas(3);
 		 m.DarAsCartas();
