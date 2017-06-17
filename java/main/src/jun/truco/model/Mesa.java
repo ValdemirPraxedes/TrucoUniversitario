@@ -96,6 +96,11 @@ public class Mesa {
 	}
 
 
+	public Turno getTurno() {
+		return turno;
+	}
+
+
 	/**
 	 * @return the forcaDasCartas
 	 */

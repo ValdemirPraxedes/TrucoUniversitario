@@ -18,7 +18,16 @@ public class Turno {
 		}
 		return null;
 	}
-	
+	public boolean hasnext(){
+		if(posicao >= jogadores.length)return false;
+		return true;
+	}
+	public Jogador next(){
+		if(posicao >= jogadores.length)return null;
+		Jogador j = jogadores[posicao];
+		posicao++;
+		return j;
+	}
 	public Jogador[] getJogador(){
 		return jogadores;
 	}

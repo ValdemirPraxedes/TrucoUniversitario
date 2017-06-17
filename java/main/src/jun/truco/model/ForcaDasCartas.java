@@ -83,17 +83,16 @@ public class ForcaDasCartas {
 	private void compareCartas(int x, Jogador j,Carta c){
 		if(Baralho.valorDasCartas.indexOf(Carta.Valor[c.getValor()]) > Baralho.valorDasCartas.indexOf(Carta.Valor[mesa[x].getValor()])){
 			percorrerMesa(x, j, c);
-			return;
 		}
 		else if(Baralho.valorDasCartas.indexOf(Carta.Valor[c.getValor()]) == Baralho.valorDasCartas.indexOf(Carta.Valor[mesa[x].getValor()])){
 			percorrerMesa(x, j, c);
 			valoresEmpachado += Carta.Valor[c.getValor()];
-			return;
+			
 		}
 		else if(x == mesa.length-1){
 			mesa[x] = c;
 			MapeamentoJogadores[x] = j;
-			return;
+			
 		}
 		else {
 			if(mesa[x+1] == null){
@@ -103,6 +102,7 @@ public class ForcaDasCartas {
 			}
 		}
 	}
+	
 	public void CartaJogada(Jogador j,Carta c){
 		
 		if(mesa[0] == null){
