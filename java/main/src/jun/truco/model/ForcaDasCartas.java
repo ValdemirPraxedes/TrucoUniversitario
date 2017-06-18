@@ -27,7 +27,7 @@ public class ForcaDasCartas {
 		return MaiorCarta;
 	}
 	private boolean DeterminarMaiorCarta(){
-		;
+		
 		for(int x = 0; x < mesa.length && mesa[x] != null;x++){
 			Boolean repetido = false;
 			for(char valor : valoresEmpachado.toCharArray())
@@ -42,6 +42,8 @@ public class ForcaDasCartas {
 			MaiorCarta = mesa[x];
 			return true;
 		}
+		JogadorComMaiorCartaNaMesa = null;
+		MaiorCarta = null;
 		return false;
 	}
 	

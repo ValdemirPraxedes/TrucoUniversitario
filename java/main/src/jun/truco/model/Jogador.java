@@ -8,6 +8,9 @@ import javax.print.attribute.standard.NumberOfDocuments;
 
 public class Jogador {
 	private String nome;
+	private int vidas = 5;
+	private int pontos;
+	private int pontosPendente;
 	private List<Carta> mao = new ArrayList<Carta>();
 	
 	public Jogador(String nome){
@@ -47,6 +50,42 @@ public class Jogador {
 	 */
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+	/**
+	 * @return the pontos
+	 */
+	public int getPontos() {
+		return pontos;
+	}
+	/**
+	 * @param pontos the pontos to set
+	 */
+	public void setPontos(int pontos) {
+		this.pontos = pontos;
+	}
+	/**
+	 * @return the vidas
+	 */
+	public int getVidas() {
+		return vidas;
+	}
+	/**
+	 * @param vidas the vidas to set
+	 */
+	public void setVidas(int vidas) {
+		this.vidas = vidas;
+	}
+	/**
+	 * @return the pontosPendente
+	 */
+	public int getPontosPendente() {
+		return pontosPendente;
+	}
+	/**
+	 * @param pontosPendente the pontosPendente to set
+	 */
+	public void setPontosPendente(int pontosPendente) {
+		this.pontosPendente = pontosPendente;
 	}
 
 	

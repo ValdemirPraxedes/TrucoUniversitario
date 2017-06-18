@@ -58,7 +58,19 @@ public class Mesa {
 	
 	}
 	
-	
+	public Jogador nextJogadoresVida(){
+		if(turno.hasnext()){
+		 return turno.next();
+		}else{
+			int todosOsPontos = 0; 
+			for(Jogador j : turno.getJogador())
+				todosOsPontos += j.getPontosPendente();
+			
+			if(todosOsPontos == numerosCartas)
+				return 	turno.getJogador()[turno.getJogador().length-1];
+			else return null;
+		}
+	}
 	public void vira(Carta c){
 		int valor = c.getValor();
 		if(valor < 0 || valor > 9)throw new ArrayIndexOutOfBoundsException();
@@ -93,6 +105,7 @@ public class Mesa {
 		else if(rodada < rodadasPorPartidas){
 			
 			Jogador j	= forcaDasCartas.getJogadorFez();
+			j.setPontos(j.getPontos()+1);
 			int posicaoDeQuemFez  = jogadores.indexOf(j);
 			
 			if(posicaoDeQuemFez == 0)posicaoDeQuemFez = jogadores.size()-1;
@@ -106,6 +119,8 @@ public class Mesa {
 			partidas++;
 			numerosCartas++;
 			rodada = 0;
+			ContagemDeHit();
+			zeraPontos();
 			if(numerosCartas == maximoDeNumerosDeCarta)numerosCartas = 2;
 			JogadorQueComecaPartida++;
 			if(JogadorQueComecaPartida == jogadores.size())JogadorQueComecaPartida = 0;
@@ -118,8 +133,40 @@ public class Mesa {
 	public int getPartidas() {
 		return partidas;
 	}
-
-
+	private void zeraPontos(){
+		for(Jogador j : jogadores)j.setPontos(0);
+	}
+	private void ContagemDeHit(){
+		for(Jogador j : jogadores){
+			int pontos = j.getPontos();
+			int pontosPendentes = j.getPontosPendente();
+			
+			if(pontos == pontosPendentes)continue;
+			else if(pontos > pontosPendentes){
+				int hit = pontos - pontosPendentes;
+				j.setVidas(j.getVidas()-hit);
+			}
+			else{
+				int hit = pontosPendentes - pontos;
+				j.setVidas(j.getVidas()-hit);
+			}
+		}
+	}
+	public boolean fimDoJogo(){
+		ArrayList<Jogador> remover = new ArrayList<Jogador>();
+		for(Jogador j : jogadores){
+			if(j.getVidas() <= 0) remover.add(j);
+		}
+		for(Jogador j : remover){
+			jogadores.remove(j);
+		}
+		if(jogadores.size() <= 1)return false;
+		else return true;
+	}
+	public Jogador getGanhador(){
+		if(jogadores.size() == 1)return jogadores.get(0);
+		else return null;
+	}
 	public void setPartidas(int partidas) {
 		this.partidas = partidas;
 	}
