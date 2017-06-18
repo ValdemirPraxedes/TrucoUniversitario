@@ -3,11 +3,12 @@ package jun.truco.model;
 public class Turno {
 
 	private Jogador[] jogadores;
-	private int posicao = 0;
+	private int posicao;
 	
 	
 	public  Turno(Jogador[] j){
 		this.jogadores = j;	
+		posicao = 0;
 	}
 	
 	public Jogador vezJogador(){
@@ -19,7 +20,9 @@ public class Turno {
 		return null;
 	}
 	public boolean hasnext(){
-		if(posicao >= jogadores.length)return false;
+		if(posicao >= jogadores.length){
+			return false;
+		}
 		return true;
 	}
 	public Jogador next(){
