@@ -6,15 +6,17 @@ import java.util.List;
 
 import javax.print.attribute.standard.NumberOfDocuments;
 
-public class Jogador {
-	private String nome;
-	private int vidas = 5;
-	private int pontos;
-	private int pontosPendente;
+public abstract class Jogador {
+	
+	protected String nome;
+	protected int vidas = 5;
+	protected int pontos;
+	protected int pontosPendente;
+	protected List<Carta> mao = new ArrayList<Carta>();
+	
 	public List<Carta> getMao() {
 		return mao;
 	}
-	private List<Carta> mao = new ArrayList<Carta>();
 	
 	public Jogador(String nome){
 		this.setNome(nome);
@@ -29,10 +31,7 @@ public class Jogador {
 	public int quantidadeDeCartas(){
 		return mao.size();
 	}
-	public Carta jogar(int posicao){
-		if(posicao < 0 || posicao > mao.size())throw new ArrayIndexOutOfBoundsException();
-		return mao.remove(posicao);
-	}
+	
 	
 	public void embaralhar(Baralho b){
 		b.embaralhar();
@@ -90,6 +89,8 @@ public class Jogador {
 	public void setPontosPendente(int pontosPendente) {
 		this.pontosPendente = pontosPendente;
 	}
+
+	
 
 	
 }

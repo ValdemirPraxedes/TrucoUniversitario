@@ -32,7 +32,7 @@ public class Mesa {
 			
 			mesa = new Carta[jogadores.size()];
 			turno = new Turno(factoryTurno(JogadorQueComecaPartida));
-			calcMaximoNumeroDeCartas();
+			if(jogadores.size() > 0)calcMaximoNumeroDeCartas();
 	}
 	public Jogador getJogadorDaVez(){
 		return jogadores.get(JogadorQueComecaPartida);

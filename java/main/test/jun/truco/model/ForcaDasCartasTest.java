@@ -13,10 +13,10 @@ public class ForcaDasCartasTest {
 	public void forçaDaCartaComUmaCarta(){
 		Carta vira = new Carta(0, Naipe.Copas);
 		Mesa m = new Mesa();
-		Jogador j1 = new Jogador("juninho");
-		Jogador j2 = new Jogador("cpu");
-		Jogador j3 = new Jogador("ana");
-		Jogador j4 = new Jogador("Maria");	
+		Jogador j1 = new Humano("juninho");
+		Jogador j2 = new Humano("cpu");
+		Jogador j3 = new Humano("ana");
+		Jogador j4 = new Humano("Maria");	
 		 m.addJogador(j1,j2,j3,j4);
 		 m.vira(vira);
 		 Carta c = new Carta(1,Naipe.Copas);
@@ -31,10 +31,10 @@ public class ForcaDasCartasTest {
 		Carta vira = new Carta(9, Naipe.Copas);
 		Mesa m = new Mesa();
 		
-		Jogador j1 = new Jogador("juninho");
-		Jogador j2 = new Jogador("cpu");
-		Jogador j3 = new Jogador("ana");
-		Jogador j4 = new Jogador("Maria");	
+		Jogador j1 = new Humano("juninho");
+		Jogador j2 = new Humano("cpu");
+		Jogador j3 = new Humano("ana");
+		Jogador j4 = new Humano("Maria");	
 		 m.addJogador(j1,j2,j3,j4);
 		 m.vira(vira);
 		 Carta c = new Carta(1,Naipe.Ouros);
@@ -51,10 +51,10 @@ public class ForcaDasCartasTest {
 		Carta vira = new Carta(2, Naipe.Copas);
 		Mesa m = new Mesa();
 		
-		Jogador j1 = new Jogador("juninho");
-		Jogador j2 = new Jogador("cpu");
-		Jogador j3 = new Jogador("ana");
-		Jogador j4 = new Jogador("Maria");	
+		Jogador j1 = new Humano("juninho");
+		Jogador j2 = new Humano("cpu");
+		Jogador j3 = new Humano("ana");
+		Jogador j4 = new Humano("Maria");	
 		 m.addJogador(j1,j2,j3,j4);
 		 m.vira(vira);
 		 Carta c = new Carta(2,Naipe.Ouros);
@@ -75,10 +75,10 @@ public class ForcaDasCartasTest {
 		Carta vira = new Carta(2, Naipe.Copas);
 		Mesa m = new Mesa();
 		m.vira(vira);
-		Jogador j1 = new Jogador("juninho");
-		Jogador j2 = new Jogador("cpu");
-		Jogador j3 = new Jogador("ana");
-		Jogador j4 = new Jogador("Maria");	
+		Jogador j1 = new Humano("juninho");
+		Jogador j2 = new Humano("cpu");
+		Jogador j3 = new Humano("ana");
+		Jogador j4 = new Humano("Maria");	
 		 m.addJogador(j1,j2,j3,j4);
 		 
 		 Carta c = new Carta(2,Naipe.Paus);
@@ -98,10 +98,10 @@ public class ForcaDasCartasTest {
 		Carta vira = new Carta(2, Naipe.Copas);
 		Mesa m = new Mesa();
 		m.vira(vira);
-		Jogador j1 = new Jogador("juninho");
-		Jogador j2 = new Jogador("cpu");
-		Jogador j3 = new Jogador("ana");
-		Jogador j4 = new Jogador("Maria");	
+		Jogador j1 = new Humano("juninho");
+		Jogador j2 = new Humano("cpu");
+		Jogador j3 = new Humano("ana");
+		Jogador j4 = new Humano("Maria");	
 		 m.addJogador(j1,j2,j3,j4);
 		 Carta c = new Carta(3,Naipe.Copas);
 		 Carta c4 = new Carta(3,Naipe.Paus);
@@ -121,10 +121,10 @@ public class ForcaDasCartasTest {
 		Carta vira = new Carta(4, Naipe.Copas);
 		Mesa m = new Mesa();
 		m.vira(vira);
-		Jogador j1 = new Jogador("juninho");
-		Jogador j2 = new Jogador("cpu");
-		Jogador j3 = new Jogador("ana");
-		Jogador j4 = new Jogador("Maria");	
+		Jogador j1 = new Humano("juninho");
+		Jogador j2 = new Humano("cpu");
+		Jogador j3 = new Humano("ana");
+		Jogador j4 = new Humano("Maria");	
 		 m.addJogador(j1,j2,j3,j4);
 		 Carta c = new Carta(1,Naipe.Copas);
 		 Carta c2 = new Carta(1,Naipe.Espadas);
@@ -143,10 +143,10 @@ public class ForcaDasCartasTest {
 		Carta vira = new Carta(4, Naipe.Copas);
 		Mesa m = new Mesa();
 		m.vira(vira);
-		Jogador j1 = new Jogador("juninho");
-		Jogador j2 = new Jogador("cpu");
-		Jogador j3 = new Jogador("ana");
-		Jogador j4 = new Jogador("Maria");	
+		Jogador j1 = new Humano("juninho");
+		Jogador j2 = new Humano("cpu");
+		Jogador j3 = new Humano("jose");
+		Jogador j4 = new Humano("Maria");	
 		 m.addJogador(j1,j2,j3,j4);
 	
 		 j1.receberCarta(new Carta(4,Naipe.Copas));
@@ -167,7 +167,7 @@ public class ForcaDasCartasTest {
 			
 				while(m.getTurno().hasnext()){
 					Jogador jogador = m.getTurno().next();
-				    m.getForcaDasCartas().CartaJogada(jogador, jogador.jogar(0));
+				    m.getForcaDasCartas().CartaJogada(jogador, ((Humano) jogador).jogar(0));
 				}
 				
 				m.limpaMesa();
@@ -181,10 +181,10 @@ public class ForcaDasCartasTest {
 		Carta vira = new Carta(4, Naipe.Copas);
 		Mesa m = new Mesa();
 		m.vira(vira);
-		Jogador j1 = new Jogador("juninho");
-		Jogador j2 = new Jogador("cpu");
-		Jogador j3 = new Jogador("ana");
-		Jogador j4 = new Jogador("Maria");	
+		Jogador j1 = new Humano("juninho");
+		Jogador j2 = new Humano("cpu");
+		Jogador j3 = new Humano("ana");
+		Jogador j4 = new Humano("Maria");	
 		 m.addJogador(j1,j2,j3,j4);
 		 Carta c = new Carta(2,Naipe.Paus);
 		 Carta c2 = new Carta(9,Naipe.Copas);
@@ -204,10 +204,10 @@ public class ForcaDasCartasTest {
 		Carta vira = new Carta(4, Naipe.Copas);
 		Mesa m = new Mesa();
 		m.vira(vira);
-		Jogador j1 = new Jogador("juninho");
-		Jogador j2 = new Jogador("cpu");
-		Jogador j3 = new Jogador("ana");
-		Jogador j4 = new Jogador("Maria");	
+		Jogador j1 = new Humano("juninho");
+		Jogador j2 = new Humano("cpu");
+		Jogador j3 = new Humano("ana");
+		Jogador j4 = new Humano("Maria");	
 		 m.addJogador(j1,j2,j3,j4);
 		 Carta c = new Carta(2,Naipe.Paus);
 		 Carta c2 = new Carta(9,Naipe.Copas);

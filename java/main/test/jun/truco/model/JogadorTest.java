@@ -7,10 +7,10 @@ public class JogadorTest {
 
 	@Test
 	public void DarUmaCarta(){
-		Jogador j1 = new Jogador("juninho");
-		Jogador j2 = new Jogador("cpu");
-		Jogador j3 = new Jogador("ana");
-		Jogador j4 = new Jogador("Maria");
+		Jogador j1 = new Humano("juninho");
+		Jogador j2 = new Humano("cpu");
+		Jogador j3 = new Humano("ana");
+		Jogador j4 = new Humano("Maria");
 		
 		Mesa m = new Mesa();  	
 		 m.addJogador(j1,j2,j3,j4);
@@ -23,10 +23,10 @@ public class JogadorTest {
 	
 	@Test
 	public void DarDuasCartas(){
-		Jogador j1 = new Jogador("juninho");
-		Jogador j2 = new Jogador("cpu");
-		Jogador j3 = new Jogador("ana");
-		Jogador j4 = new Jogador("Maria");
+		Jogador j1 = new Humano("juninho");
+		Jogador j2 = new Humano("cpu");
+		Jogador j3 = new Humano("ana");
+		Jogador j4 = new Humano("Maria");
 		
 		Mesa m = new Mesa();  	
 		 m.addJogador(j1,j2,j3,j4);
@@ -40,10 +40,10 @@ public class JogadorTest {
 	
 	@Test
 	public void DarTresCartas(){
-		Jogador j1 = new Jogador("juninho");
-		Jogador j2 = new Jogador("cpu");
-		Jogador j3 = new Jogador("ana");
-		Jogador j4 = new Jogador("Maria");
+		Jogador j1 = new Humano("juninho");
+		Jogador j2 = new Humano("cpu");
+		Jogador j3 = new Humano("ana");
+		Jogador j4 = new Humano("Maria");
 		
 		 Mesa m = new Mesa();  	
 		 m.addJogador(j1,j2,j3,j4);
@@ -57,10 +57,10 @@ public class JogadorTest {
 
 	@Test(expected=ArrayIndexOutOfBoundsException.class)
 	public void DarMaisQueOLimiteDeCartas(){
-		Jogador j1 = new Jogador("juninho");
-		Jogador j2 = new Jogador("cpu");
-		Jogador j3 = new Jogador("ana");
-		Jogador j4 = new Jogador("Maria");
+		Jogador j1 = new Humano("juninho");
+		Jogador j2 = new Humano("cpu");
+		Jogador j3 = new Humano("ana");
+		Jogador j4 = new Humano("Maria");
 		
 		Mesa m = new Mesa();  	
 		 m.addJogador(j1,j2,j3,j4);

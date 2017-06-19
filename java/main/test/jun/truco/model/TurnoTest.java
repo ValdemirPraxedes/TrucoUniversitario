@@ -9,8 +9,8 @@ public class TurnoTest {
 
 	@Test
 	public void TurnoComDoisJogadores() {
-		Jogador j = new Jogador("juninho");
-		Jogador j2 = new Jogador("L");
+		Jogador j = new Humano("juninho");
+		Jogador j2 = new Humano("L");
 		Mesa m = new Mesa(j,j2);
 		m.ComeçarPartida();
 		Jogador[] js = {j2,j};
@@ -23,9 +23,9 @@ public class TurnoTest {
 	
 	@Test
 	public void TurnoComTresJogadores() {
-		Jogador j = new Jogador("juninho");
-		Jogador j2 = new Jogador("L");
-		Jogador j3 = new Jogador("m");
+		Jogador j = new Humano("juninho");
+		Jogador j2 = new Humano("L");
+		Jogador j3 = new Humano("m");
 		Mesa m = new Mesa(j,j2,j3);
 		m.ComeçarPartida();
 		Jogador[] js = {j2,j3,j};
@@ -38,10 +38,10 @@ public class TurnoTest {
 	
 	@Test
 	public void TurnoComQuatroJogadores() {
-		Jogador j = new Jogador("juninho");
-		Jogador j2 = new Jogador("L");
-		Jogador j3 = new Jogador("m");
-		Jogador j4 = new Jogador("m");
+		Jogador j = new Humano("juninho");
+		Jogador j2 = new Humano("L");
+		Jogador j3 = new Humano("m");
+		Jogador j4 = new Humano("m");
 		Mesa m = new Mesa(j,j2,j3,j4);
 		m.ComeçarPartida();
 		Jogador[] js = {j2,j3,j4,j};

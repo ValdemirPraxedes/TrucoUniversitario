@@ -29,10 +29,10 @@ public class MesaTest {
 	
 	@Test
 	public void PrimeiraPartidaRodadaQuatroJogadoresEmpache() {
-			Jogador j = new Jogador("juninho");
-			Jogador j2 = new Jogador("L");
-			Jogador j3 = new Jogador("b");
-			Jogador j4 = new Jogador("m");
+		Jogador j = new Humano("juninho");
+		Jogador j2 = new Humano("cpu");
+		Jogador j3 = new Humano("ana");
+		Jogador j4 = new Humano("Maria");
 			Mesa m = new Mesa(j,j2,j3,j4);
 			
 			j.receberCarta(new Carta(3,Naipe.Paus));
@@ -48,7 +48,7 @@ public class MesaTest {
 			while (m.hasRodada()) {
 				while(m.getTurno().hasnext()){
 					Jogador jogador = m.getTurno().next();
-					m.getForcaDasCartas().CartaJogada(jogador, jogador.jogar(0));
+					m.getForcaDasCartas().CartaJogada(jogador, ((Humano) jogador).jogar(0));
 				}
 			}
 			Assert.assertEquals(j4.getNome(),m.getForcaDasCartas().getJogadorFez().getNome());
@@ -57,10 +57,10 @@ public class MesaTest {
 	
 	@Test
 	public void PrimeiraPartidaRodadaQuatroJogadores() {
-			Jogador j = new Jogador("juninho");
-			Jogador j2 = new Jogador("L");
-			Jogador j3 = new Jogador("m");
-			Jogador j4 = new Jogador("m");
+		Jogador j = new Humano("juninho");
+		Jogador j2 = new Humano("cpu");
+		Jogador j3 = new Humano("ana");
+		Jogador j4 = new Humano("Maria");
 			Mesa m = new Mesa(j,j2,j3,j4);
 			
 			j.receberCarta(new Carta(3,Naipe.Paus));
@@ -76,7 +76,7 @@ public class MesaTest {
 			while (m.hasRodada()) {
 				while(m.getTurno().hasnext()){
 					Jogador jogador = m.getTurno().next();
-					m.getForcaDasCartas().CartaJogada(jogador, jogador.jogar(0));
+					m.getForcaDasCartas().CartaJogada(jogador, ((Humano) jogador).jogar(0));
 				}
 			}
 			Assert.assertEquals(j2,m.getForcaDasCartas().getJogadorFez());
@@ -85,10 +85,10 @@ public class MesaTest {
 	
 	@Test
 	public void SegundaPartidaRodadaQuatroJogadoresEmpache() {
-			Jogador j = new Jogador("juninho");
-			Jogador j2 = new Jogador("L");
-			Jogador j3 = new Jogador("m");
-			Jogador j4 = new Jogador("n");
+		Jogador j = new Humano("juninho");
+		Jogador j2 = new Humano("cpu");
+		Jogador j3 = new Humano("ana");
+		Jogador j4 = new Humano("Maria");
 			Mesa m = new Mesa(j,j2,j3,j4);
 			
 			j.receberCarta(new Carta(2,Naipe.Paus));
@@ -114,7 +114,7 @@ public class MesaTest {
 				}
 				while(m.getTurno().hasnext()){
 					Jogador jogador = m.getTurno().next();
-				    m.getForcaDasCartas().CartaJogada(jogador, jogador.jogar(0));
+				    m.getForcaDasCartas().CartaJogada(jogador, ((Humano) jogador).jogar(0));
 				}
 				m.limpaMesa();
 				quantidadeInteração++;
@@ -126,10 +126,10 @@ public class MesaTest {
 	
 	@Test
 	public void SegundaPartidaRodadaQuatroJogadores() {
-			Jogador j = new Jogador("juninho");
-			Jogador j2 = new Jogador("L");
-			Jogador j3 = new Jogador("m");
-			Jogador j4 = new Jogador("n");
+		Jogador j = new Humano("juninho");
+		Jogador j2 = new Humano("cpu");
+		Jogador j3 = new Humano("ana");
+		Jogador j4 = new Humano("Maria");
 			Mesa m = new Mesa(j,j2,j3,j4);
 			
 			j.receberCarta(new Carta(2,Naipe.Paus));
@@ -155,7 +155,7 @@ public class MesaTest {
 				}
 				while(m.getTurno().hasnext()){
 					Jogador jogador = m.getTurno().next();
-				    m.getForcaDasCartas().CartaJogada(jogador, jogador.jogar(0));
+				    m.getForcaDasCartas().CartaJogada(jogador, ((Humano) jogador).jogar(0));
 				}
 				m.limpaMesa();
 				quantidadeInteração++;
@@ -167,10 +167,10 @@ public class MesaTest {
 	
 	@Test
 	public void TerceiraPartidaRodadaQuatroJogadores() {
-			Jogador j = new Jogador("juninho");
-			Jogador j2 = new Jogador("L");
-			Jogador j3 = new Jogador("m");
-			Jogador j4 = new Jogador("n");
+		Jogador j = new Humano("juninho");
+		Jogador j2 = new Humano("cpu");
+		Jogador j3 = new Humano("ana");
+		Jogador j4 = new Humano("Maria");
 			Mesa m = new Mesa(j,j2,j3,j4);
 			
 			j.receberCarta(new Carta(2,Naipe.Paus));
@@ -205,7 +205,7 @@ public class MesaTest {
 				}
 				while(m.getTurno().hasnext()){
 					Jogador jogador = m.getTurno().next();
-				    m.getForcaDasCartas().CartaJogada(jogador, jogador.jogar(0));
+				    m.getForcaDasCartas().CartaJogada(jogador, ((Humano) jogador).jogar(0));
 				}
 				m.limpaMesa();
 				quantidadeInteração++;
@@ -217,10 +217,10 @@ public class MesaTest {
    
 	@Test
 	public void PontosPendentesLoop() {
-		Jogador j = new Jogador("juninho");
-		Jogador j2 = new Jogador("L");
-		Jogador j3 = new Jogador("m");
-		Jogador j4 = new Jogador("n");
+		Jogador j = new Humano("juninho");
+		Jogador j2 = new Humano("cpu");
+		Jogador j3 = new Humano("ana");
+		Jogador j4 = new Humano("Maria");
 		Mesa m = new Mesa(j,j2,j3,j4);
 		
 		m.setNumerosCartas(8);
@@ -237,10 +237,10 @@ public class MesaTest {
 	
 	@Test
 	public void PontosPendentes() {
-		Jogador j = new Jogador("juninho");
-		Jogador j2 = new Jogador("L");
-		Jogador j3 = new Jogador("m");
-		Jogador j4 = new Jogador("n");
+		Jogador j = new Humano("juninho");
+		Jogador j2 = new Humano("cpu");
+		Jogador j3 = new Humano("ana");
+		Jogador j4 = new Humano("Maria");
 		Mesa m = new Mesa(j,j2,j3,j4);
 		
 		m.setNumerosCartas(5);
@@ -258,10 +258,10 @@ public class MesaTest {
 	@Test
 	public void JogadoresHit() {
 		
-		Jogador j = new Jogador("juninho");
-		Jogador j2 = new Jogador("L");
-		Jogador j3 = new Jogador("m");
-		Jogador j4 = new Jogador("n");
+		Jogador j = new Humano("juninho");
+		Jogador j2 = new Humano("cpu");
+		Jogador j3 = new Humano("ana");
+		Jogador j4 = new Humano("Maria");
 		
 		Mesa m = new Mesa(j,j2,j3,j4);
 		
@@ -297,7 +297,7 @@ public class MesaTest {
 		
 			while(m.getTurno().hasnext()){
 				Jogador jogador = m.getTurno().next();
-			    m.getForcaDasCartas().CartaJogada(jogador, jogador.jogar(0));
+			    m.getForcaDasCartas().CartaJogada(jogador, ((Humano) jogador).jogar(0));
 			}
 			m.limpaMesa();
 		}
@@ -308,10 +308,10 @@ public class MesaTest {
 	@Test
 	public void FimDoJogo() {
 		
-		Jogador j = new Jogador("juninho");
-		Jogador j2 = new Jogador("L");
-		Jogador j3 = new Jogador("m");
-		Jogador j4 = new Jogador("n");
+		Jogador j = new Humano("juninho");
+		Jogador j2 = new Humano("cpu");
+		Jogador j3 = new Humano("ana");
+		Jogador j4 = new Humano("Maria");
 		
 		Mesa m = new Mesa(j,j2,j3,j4);
 		
@@ -349,7 +349,7 @@ public class MesaTest {
 		
 			while(m.getTurno().hasnext()){
 				Jogador jogador = m.getTurno().next();
-			    m.getForcaDasCartas().CartaJogada(jogador, jogador.jogar(0));
+			    m.getForcaDasCartas().CartaJogada(jogador, ((Humano) jogador).jogar(0));
 			}
 			m.limpaMesa();
 		}
