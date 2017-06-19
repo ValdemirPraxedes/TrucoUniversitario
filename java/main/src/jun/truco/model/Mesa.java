@@ -15,10 +15,16 @@ public class Mesa {
 	private int partidas = 0;
 	private int rodadasPorPartidas = 1;
 	private int rodada = 0;
-	private int maximoDeNumerosDeCarta = 10;
+	private int maximoDeNumerosDeCarta;
 	
 	private ForcaDasCartas forcaDasCartas;
 	
+	public List<Jogador> getJogadores() {
+		return jogadores;
+	}
+	public void setForcaDasCartas(ForcaDasCartas forcaDasCartas) {
+		this.forcaDasCartas = forcaDasCartas;
+	}
 	public Mesa(Jogador... j){
 		
 		for(Jogador jogador : j)
@@ -26,8 +32,14 @@ public class Mesa {
 			
 			mesa = new Carta[jogadores.size()];
 			turno = new Turno(factoryTurno(JogadorQueComecaPartida));
+			calcMaximoNumeroDeCartas();
 	}
-
+	public Jogador getJogadorDaVez(){
+		return jogadores.get(JogadorQueComecaPartida);
+	}
+	public Carta[] getMesa() {
+		return mesa;
+	}
 	public void limpaMesa(){
 		mesa = new Carta[jogadores.size()];
 		forcaDasCartas.setMesa(mesa);
@@ -39,6 +51,7 @@ public class Mesa {
 		
 		mesa = new Carta[jogadores.size()];
 		turno = new Turno(factoryTurno(JogadorQueComecaPartida));
+		calcMaximoNumeroDeCartas();
 		
 	}
 	
@@ -83,7 +96,7 @@ public class Mesa {
 		
 	}
 	
-	public void ComeçarTurno(){
+	public void ComeçarPartida(){
 		forcaDasCartas = new ForcaDasCartas(mesa, manilha);
 	}
 	
@@ -94,7 +107,9 @@ public class Mesa {
 	public void setNumerosCartas(int numerosCartas) {
 		this.numerosCartas = numerosCartas;
 	}
-	
+	public void calcMaximoNumeroDeCartas(){
+		maximoDeNumerosDeCarta = 40/jogadores.size();
+	}
 	public boolean hasRodada(){
 		
 		if(rodada == 0){
@@ -105,8 +120,12 @@ public class Mesa {
 		else if(rodada < rodadasPorPartidas){
 			
 			Jogador j	= forcaDasCartas.getJogadorFez();
-			j.setPontos(j.getPontos()+1);
-			int posicaoDeQuemFez  = jogadores.indexOf(j);
+			int posicaoDeQuemFez;
+			if(j != null){
+				j.setPontos(j.getPontos()+1);
+				posicaoDeQuemFez  = jogadores.indexOf(j);
+			}
+			else posicaoDeQuemFez = jogadores.indexOf(turno.getJogador()[turno.getJogador().length-1]);
 			
 			if(posicaoDeQuemFez == 0)posicaoDeQuemFez = jogadores.size()-1;
 			else posicaoDeQuemFez--;
@@ -119,12 +138,17 @@ public class Mesa {
 			partidas++;
 			numerosCartas++;
 			rodada = 0;
+			rodadasPorPartidas++;
+			Jogador j	= forcaDasCartas.getJogadorFez();
+			if(j != null) j.setPontos(j.getPontos()+1);
 			ContagemDeHit();
 			zeraPontos();
-			if(numerosCartas == maximoDeNumerosDeCarta)numerosCartas = 2;
+			OlharSeAlgumjogadorCaiu();
+			calcMaximoNumeroDeCartas();
+			if(numerosCartas > maximoDeNumerosDeCarta)numerosCartas = 2;
 			JogadorQueComecaPartida++;
 			if(JogadorQueComecaPartida == jogadores.size())JogadorQueComecaPartida = 0;
-			
+			turno = new Turno(factoryTurno(JogadorQueComecaPartida));
 			return false;
 		}
 	}
@@ -152,14 +176,20 @@ public class Mesa {
 			}
 		}
 	}
-	public boolean fimDoJogo(){
+	private void OlharSeAlgumjogadorCaiu(){
 		ArrayList<Jogador> remover = new ArrayList<Jogador>();
 		for(Jogador j : jogadores){
 			if(j.getVidas() <= 0) remover.add(j);
 		}
 		for(Jogador j : remover){
+			int posicao = jogadores.indexOf(j);
+			if(posicao < JogadorQueComecaPartida)JogadorQueComecaPartida--;
+			if(JogadorQueComecaPartida == jogadores.size())JogadorQueComecaPartida = 0;
 			jogadores.remove(j);
 		}
+	}
+	public boolean fimDoJogo(){
+		
 		if(jogadores.size() <= 1)return false;
 		else return true;
 	}

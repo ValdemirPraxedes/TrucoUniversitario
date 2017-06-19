@@ -34,4 +34,7 @@ public class Turno {
 	public Jogador[] getJogador(){
 		return jogadores;
 	}
+	public int getPosicao(){
+		return posicao;
+	}
 }

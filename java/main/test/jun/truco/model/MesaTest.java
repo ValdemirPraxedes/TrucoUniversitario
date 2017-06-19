@@ -28,6 +28,34 @@ public class MesaTest {
 	}
 	
 	@Test
+	public void PrimeiraPartidaRodadaQuatroJogadoresEmpache() {
+			Jogador j = new Jogador("juninho");
+			Jogador j2 = new Jogador("L");
+			Jogador j3 = new Jogador("b");
+			Jogador j4 = new Jogador("m");
+			Mesa m = new Mesa(j,j2,j3,j4);
+			
+			j.receberCarta(new Carta(3,Naipe.Paus));
+			j2.receberCarta(new Carta(3,Naipe.Paus));
+			j3.receberCarta(new Carta(6,Naipe.Copas));
+			j4.receberCarta(new Carta(1,Naipe.Paus));
+			
+			Carta vira = new Carta(4, Naipe.Paus);
+			m.vira(vira);
+			
+			m.ComeçarPartida();
+			
+			while (m.hasRodada()) {
+				while(m.getTurno().hasnext()){
+					Jogador jogador = m.getTurno().next();
+					m.getForcaDasCartas().CartaJogada(jogador, jogador.jogar(0));
+				}
+			}
+			Assert.assertEquals(j4.getNome(),m.getForcaDasCartas().getJogadorFez().getNome());
+			
+	}
+	
+	@Test
 	public void PrimeiraPartidaRodadaQuatroJogadores() {
 			Jogador j = new Jogador("juninho");
 			Jogador j2 = new Jogador("L");
@@ -43,7 +71,7 @@ public class MesaTest {
 			Carta vira = new Carta(4, Naipe.Paus);
 			m.vira(vira);
 			
-			m.ComeçarTurno();
+			m.ComeçarPartida();
 			
 			while (m.hasRodada()) {
 				while(m.getTurno().hasnext()){
@@ -52,6 +80,47 @@ public class MesaTest {
 				}
 			}
 			Assert.assertEquals(j2,m.getForcaDasCartas().getJogadorFez());
+			
+	}
+	
+	@Test
+	public void SegundaPartidaRodadaQuatroJogadoresEmpache() {
+			Jogador j = new Jogador("juninho");
+			Jogador j2 = new Jogador("L");
+			Jogador j3 = new Jogador("m");
+			Jogador j4 = new Jogador("n");
+			Mesa m = new Mesa(j,j2,j3,j4);
+			
+			j.receberCarta(new Carta(2,Naipe.Paus));
+			j2.receberCarta(new Carta(1,Naipe.Paus));
+			j3.receberCarta(new Carta(1,Naipe.Copas));
+			j4.receberCarta(new Carta(1,Naipe.Paus));
+			
+			j.receberCarta(new Carta(2,Naipe.Espadas));
+			j2.receberCarta(new Carta(9,Naipe.Paus));
+			j3.receberCarta(new Carta(2,Naipe.Copas));
+			j4.receberCarta(new Carta(4,Naipe.Paus));
+			
+			Carta vira = new Carta(4, Naipe.Paus);
+			m.vira(vira);
+			m.setNumerosCartas(2);
+			m.setRodadasPorPartidas(2);
+			m.ComeçarPartida();
+			int quantidadeInteração = 0;
+			while (m.hasRodada()) {
+				if(quantidadeInteração == 1){
+					Assert.assertEquals(j.getNome(),m.getForcaDasCartas().getJogadorFez().getNome());
+					Assert.assertEquals(j.getNome(),m.getTurno().getJogador()[0].getNome());
+				}
+				while(m.getTurno().hasnext()){
+					Jogador jogador = m.getTurno().next();
+				    m.getForcaDasCartas().CartaJogada(jogador, jogador.jogar(0));
+				}
+				m.limpaMesa();
+				quantidadeInteração++;
+			}
+			Assert.assertEquals(quantidadeInteração,2);
+			Assert.assertEquals(j2.getNome(),m.getForcaDasCartas().getJogadorFez().getNome());
 			
 	}
 	
@@ -77,7 +146,7 @@ public class MesaTest {
 			m.vira(vira);
 			m.setNumerosCartas(2);
 			m.setRodadasPorPartidas(2);
-			m.ComeçarTurno();
+			m.ComeçarPartida();
 			int quantidadeInteração = 0;
 			while (m.hasRodada()) {
 				if(quantidadeInteração == 1){
@@ -123,7 +192,7 @@ public class MesaTest {
 			m.vira(vira);
 			m.setNumerosCartas(3);
 			m.setRodadasPorPartidas(3);
-			m.ComeçarTurno();
+			m.ComeçarPartida();
 			int quantidadeInteração = 0;
 			while (m.hasRodada()) {
 				if(quantidadeInteração == 1){
@@ -222,7 +291,7 @@ public class MesaTest {
 			
 		}
 		m.setRodada(3);
-		m.ComeçarTurno();
+		m.ComeçarPartida();
 	
 		while (m.hasRodada()) {
 		
@@ -274,7 +343,7 @@ public class MesaTest {
 			
 		}
 		m.setRodada(3);
-		m.ComeçarTurno();
+		m.ComeçarPartida();
 		do{
 		while (m.hasRodada()) {
 		

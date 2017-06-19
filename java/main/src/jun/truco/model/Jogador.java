@@ -11,6 +11,9 @@ public class Jogador {
 	private int vidas = 5;
 	private int pontos;
 	private int pontosPendente;
+	public List<Carta> getMao() {
+		return mao;
+	}
 	private List<Carta> mao = new ArrayList<Carta>();
 	
 	public Jogador(String nome){

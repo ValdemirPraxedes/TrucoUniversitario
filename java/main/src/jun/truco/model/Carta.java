@@ -25,7 +25,7 @@ public class Carta {
 	 * @param valor the valor to set
 	 */
 	public void setValor(int valor) {
-		if(valor < 0 || valor > 10){
+		if(valor < 0 || valor > 9){
 			throw new ArrayIndexOutOfBoundsException();
 		}
 		this.valor = valor;

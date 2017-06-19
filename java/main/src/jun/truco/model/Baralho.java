@@ -25,7 +25,7 @@ public class Baralho {
 		for(Carta.Naipe n : Carta.Naipe.values()){
 			for(int v = 1; v <= Carta.Valor.length;v++){
 				int pos = v + n.ordinal() * Carta.Valor.length-1;
-				baralho[pos] = new Carta(v,n);
+				baralho[pos] = new Carta((v-1),n);
 			}
 		}
 	}
