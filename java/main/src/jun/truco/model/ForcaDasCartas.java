@@ -130,6 +130,7 @@ public class ForcaDasCartas {
 						if(x < mesa.length-1 && mesa[x+1] == null){
 							mesa[x+1] = c;
 							MapeamentoJogadores[x+1] = j;
+							break;
 						}
 					}
 						

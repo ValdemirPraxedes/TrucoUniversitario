@@ -145,7 +145,10 @@ public class Mesa {
 			zeraPontos();
 			OlharSeAlgumjogadorCaiu();
 			calcMaximoNumeroDeCartas();
-			if(numerosCartas > maximoDeNumerosDeCarta)numerosCartas = 2;
+			if(numerosCartas > maximoDeNumerosDeCarta){
+				numerosCartas = 2;
+				rodadasPorPartidas = 2;
+			}
 			JogadorQueComecaPartida++;
 			if(JogadorQueComecaPartida == jogadores.size())JogadorQueComecaPartida = 0;
 			turno = new Turno(factoryTurno(JogadorQueComecaPartida));
