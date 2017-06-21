@@ -49,7 +49,7 @@ public class ForcaDasCartas {
 	
 	private void percorrerMesa(int posicao, Jogador j, Carta c){
 		Carta aux = mesa[posicao];
-		Jogador jAux = j;
+		Jogador jAux = MapeamentoJogadores[posicao];
 		for(int x = posicao; x  < mesa.length-1 && mesa[x] != null;x++){
 			Carta aux2 = mesa[x+1];
 			mesa[x+1] = aux;
@@ -124,9 +124,15 @@ public class ForcaDasCartas {
 			if(seForManilha(c))TratamentoManilha(j, c);
 			
 			else for(int x = 0; x < mesa.length && mesa[x] != null;x++)
-					if(mesa[x].getValor() != manilha)
+					if(mesa[x].getValor() != manilha){
 						if(compareCartas(x, j, c))break;
-			
+					}else{
+						if(x < mesa.length-1 && mesa[x+1] == null){
+							mesa[x+1] = c;
+							MapeamentoJogadores[x+1] = j;
+						}
+					}
+						
 		}
 		DeterminarMaiorCarta();
 	}

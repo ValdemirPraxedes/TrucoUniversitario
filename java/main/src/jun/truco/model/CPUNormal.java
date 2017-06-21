@@ -5,9 +5,12 @@ import java.util.Random;
 public class CPUNormal extends CPU {
 
 	private Mesa m;
+	private IAAcoes vou;
+	
 	public CPUNormal(String nome, Mesa m) {
 		super(nome);
 		this.m = m;
+		vou = new IAAcoes(m,this);
 	}
 
 	@Override
@@ -25,113 +28,70 @@ public class CPUNormal extends CPU {
 		}
 	}
 
-	private int PosicaoDaMaiorCartaNaMaoSemManilha(){
-		int maiorValor = Baralho.valorDasCartas.indexOf(Carta.Valor[mao.get(0).getValor()]);
-		int posicao = 0;
-		for(int x = 1; x < mao.size();x++){
-			if(Baralho.valorDasCartas.indexOf(Carta.Valor[mao.get(x).getValor()]) > maiorValor){
-				maiorValor = Baralho.valorDasCartas.indexOf(Carta.Valor[mao.get(x).getValor()]);
-				posicao = x;
-			}
-		}
-		return posicao;
-	}
-	private int posicaoDeEmpache(String mesa){
-		for(int x = 0; x < mao.size();x++){
-			if(mesa.contains(Carta.Valor[mao.get(x).getValor()]))return x;
-		}
-		return -1;
-	}
-	private int posicaoCartaMenorDoQueMaiorNaMesa(){
-		
-		if(m.getMesa()[0] == m.getMesa()[1])return -1;
-		else
-			for(int x = 0; x < mao.size();x++)
-				if(Baralho.valorDasCartas.indexOf(Carta.Valor[mao.get(x).getValor()]) < Baralho.valorDasCartas.indexOf(Carta.Valor[m.getMesa()[0].getValor()])) return x;
-			
-		return -1;
-	}
+
 	
-	private int posicaoCartaMaiorDoQueMaiorNaMesa(){
-		
-		if(Carta.Valor[m.getMesa()[0].getValor()].equals(m.getManilha()) && m.getMesa()[0] == m.getMesa()[1])return -1;
-		else
-			for(int x = 0; x < mao.size();x++)
-				if(Baralho.valorDasCartas.indexOf(Carta.Valor[mao.get(x).getValor()]) > Baralho.valorDasCartas.indexOf(Carta.Valor[m.getMesa()[0].getValor()])) return x;
-			
-		return -1;
-	}
-	private int maisFracaDaMao(){
-		int menorValor = Baralho.valorDasCartas.indexOf(Carta.Valor[mao.get(0).getValor()]);
-		int posicao = 0;
-		for(int x = 1; x < mao.size();x++){
-			if(Baralho.valorDasCartas.indexOf(Carta.Valor[mao.get(x).getValor()]) < menorValor){
-				menorValor = Baralho.valorDasCartas.indexOf(Carta.Valor[mao.get(x).getValor()]);
-				posicao = x;
-			}
-		}
-		return posicao;
-	}
+	
+
+
 	
 	private Carta ModoDescante(){
 		if(m.getMesa()[0] != null){
-			String mesa = "";
 			
-			for(int a = 0; a < m.getMesa().length && m.getMesa()[a] != null;a++){
-				//Se tiver manilha na mesa
-				if(Carta.Valor[m.getMesa()[a].getValor()].equals(m.getManilha())){
-					for(int x = 0; x < mao.size();x++)
-						if(Carta.Valor[mao.get(x).getValor()].equals(m.getManilha()))
-						  if(m.getMesa()[a].getNaipe().ordinal() < mao.get(x).getNaipe().ordinal())return mao.remove(x);	
-				  
-					return mao.get(PosicaoDaMaiorCartaNaMaoSemManilha());
+			//Quando tem manilha na mesa
+			if(vou.olharSeTemManilhaNaMesa()){
+				
+				int posicao = vou.posicaoDaManilhaNaMao();
+				if(posicao != -1){
+					if(vou.posicaoDeCartaNaMesa(mao.get(posicao)) > 0)return mao.remove(posicao);
+				}else{
+					return mao.remove(vou.getPosicaoDaMaiorCartaNaMao());
 				}
-				mesa += Carta.Valor[m.getMesa()[a].getValor()];
 			}
-			//empache
-			int posicao = posicaoDeEmpache(mesa);
-			if(posicao != -1)return mao.remove(posicao);
-			posicao = posicaoCartaMenorDoQueMaiorNaMesa();
-			if(posicao != -1)return mao.remove(posicao);
 			
-			return mao.remove(new Random().nextInt(mao.size()));
+			//empache
+			for(int x = 0; x < mao.size(); x++){
+			if(vou.CartaEmpacha(mao.get(x))){
+					return mao.remove(x);
+				}
+			}
+		
+			//jogarMenorCarta
+			for(int x = 0; x < mao.size(); x++){
+				if(vou.posicaoDeCartaNaMesa(mao.get(x)) > 0)
+						return mao.remove(x);
+				}
+			
+			return mao.remove(vou.getPosicaoDaMenorCartaNaMao());
 		}else{
-			return mao.remove(maisFracaDaMao());
+			return mao.remove(vou.getPosicaoDaMenorCartaNaMao());
 		}
 	}
 	
 	private Carta modoFazedor(){
 		if(m.getMesa()[0] != null){
 			
-			
-			for(int a = 0; a < m.getMesa().length && m.getMesa()[a] != null;a++){
-				//Se tiver manilha na mesa
-				if(Carta.Valor[m.getMesa()[a].getValor()].equals(m.getManilha())){
-					for(int x = 0; x < mao.size();x++)
-						if(Carta.Valor[mao.get(x).getValor()].equals(m.getManilha()))
-						  if(m.getMesa()[a].getNaipe().ordinal() > mao.get(x).getNaipe().ordinal())return mao.remove(x);	
-				  
+			//Quando tem manilha na mesa
+			if(vou.olharSeTemManilhaNaMesa()){
+				
+				int posicao = vou.posicaoDaManilhaNaMao();
+				if(posicao != -1){
+					if(vou.posicaoDeCartaNaMesa(mao.get(posicao)) == 0)return mao.remove(posicao);
+				}else{
+					return mao.remove(vou.getPosicaoDaMenorCartaNaMao());
 				}
 			}
-			int posicao = posicaoCartaMaiorDoQueMaiorNaMesa();
-			if(posicao != -1)return mao.remove(posicao);
-			return mao.remove(new Random().nextInt(mao.size()));
+			
+			for(int x = 0; x < mao.size(); x++){
+				if(vou.posicaoDeCartaNaMesa(mao.get(x)) == 0)
+						return mao.remove(x);
+				}
+			
+			return mao.remove(vou.getPosicaoDaMenorCartaNaMao());
 		}else{
-			return mao.remove(maisForteDaMao());
+			return mao.remove(vou.getPosicaoDaMaiorCartaNaMao());
 		}
 	}
-	private int maisForteDaMao() {
-		int maiorValor = Baralho.valorDasCartas.indexOf(Carta.Valor[mao.get(0).getValor()]);
-		int posicao = 0;
-		for(int x = 0; x < mao.size();x++){
-			if(Carta.Valor[mao.get(x).getValor()].equals(m.getManilha()))return x;
-			else if(Baralho.valorDasCartas.indexOf(Carta.Valor[mao.get(x).getValor()]) > maiorValor){
-				maiorValor = Baralho.valorDasCartas.indexOf(Carta.Valor[mao.get(x).getValor()]);
-				posicao = x;
-			}
-		}
-		return posicao;
-	}
+
 
 	@Override
 	public int escolherPontosPendentes(int limiteDeCartas) {

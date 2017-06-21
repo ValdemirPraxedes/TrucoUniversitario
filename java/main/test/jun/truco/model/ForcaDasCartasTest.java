@@ -27,6 +27,28 @@ public class ForcaDasCartasTest {
 	}
 	
 	@Test
+	public void forçaDaCartaComDuasCartasEmpache3(){
+		Carta vira = new Carta(9, Naipe.Copas);
+		Mesa m = new Mesa();
+		
+		Jogador j1 = new Humano("juninho");
+		Jogador j2 = new Humano("cpu");
+		Jogador j3 = new Humano("ana");
+		Jogador j4 = new Humano("Maria");	
+		 m.addJogador(j1,j2,j3,j4);
+		 m.vira(vira);
+		 Carta c = new Carta(2,Naipe.Ouros);
+		 Carta c2 = new Carta(2,Naipe.Espadas);
+		 Carta c3 = new Carta(1,Naipe.Espadas);
+		 m.ComeçarPartida();
+		 m.getForcaDasCartas().CartaJogada(j1, c3);
+		 m.getForcaDasCartas().CartaJogada(j2, c);
+		 m.getForcaDasCartas().CartaJogada(j3, c2);
+		 Assert.assertEquals(j1.getNome(), m.getForcaDasCartas().getJogadorFez().nome);
+		 
+	}
+	
+	@Test
 	public void forçaDaCartaComDuasCartas(){
 		Carta vira = new Carta(9, Naipe.Copas);
 		Mesa m = new Mesa();
