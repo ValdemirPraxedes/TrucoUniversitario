@@ -2,17 +2,15 @@ package jun.truco.model;
 
 
 /**
- * 
- *
- * 
+ * Classe Baralho Cria um conjunto de 40 cartas;
+ *@author Valdemir Praxedes
  */
 public class Baralho {
-	/**
-	 * 	
-	 */
+	
 	private Carta[] baralho = new Carta[40];
 	public static final String valorDasCartas = "4567QJKA23";
 	private int quantidade_de_cartas;
+	
 	
 	public Baralho(){
 		
@@ -20,7 +18,9 @@ public class Baralho {
 		
 		quantidade_de_cartas = baralho.length;
 	}
-	
+	/**
+	 *Método private que cria um baralho
+	 */
 	private void init_baralho(){
 		for(Carta.Naipe n : Carta.Naipe.values()){
 			for(int v = 1; v <= Carta.Valor.length;v++){
@@ -29,7 +29,10 @@ public class Baralho {
 			}
 		}
 	}
-	
+	/**
+	 * toString retorna todas as Cartas do Baralho.
+	 * @return String
+	 */
 	public String toString(){
 		StringBuilder strb = new StringBuilder("[");
 		
@@ -41,7 +44,9 @@ public class Baralho {
 		return strb.toString();
 	}
 	
-	
+	/**
+	 * Embaralha o conjunto de cartas 
+	 */
 	public void embaralhar() {
 		for (int n = 0; n < quantidade_de_cartas; n++) {
 			Carta aux = baralho[n];
@@ -50,7 +55,10 @@ public class Baralho {
 			baralho[p] = aux;
 			}
 		}
-	
+	/**
+	 * Método DarCarta retorna a última carta do baralho. 
+	 * @return Carta
+	 */
 	public Carta DarCarta(){
 		if(quantidade_de_cartas > 0){
 			Carta c = baralho[quantidade_de_cartas-1];

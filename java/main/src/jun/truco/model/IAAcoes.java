@@ -1,5 +1,10 @@
 package jun.truco.model;
 
+/**
+ * Classe que representa ações que um Jogador pode fazer no jogo
+ * @author Valdemir Praxedes
+ *
+ */
 public class IAAcoes {
 
 	private Mesa m;

@@ -1,9 +1,13 @@
 package jun.truco.model;
 
+
+/**
+ * Classe que contém as regras que determinam quais valores e naipes de cartas prevalecem sobre outras.   
+ * @author Valdemir Praxedes
+ *
+ */
 public class ForcaDasCartas {
 	
-	
-
 	private Carta[] mesa;
 	private String valoresEmpachado = "";
 	private Jogador[] MapeamentoJogadores;
