@@ -1,12 +1,7 @@
 package jun.truco.model;
 
 import java.util.Random;
-/**
- * Classe concreta que simula um Jogador CPU com técnicas para vencer o jogo.
- * Classe CPUNormal estende de CPU
- * @author Valdemir Praxedes
- *
- */
+
 public class CPUNormal extends CPU {
 
 	private Mesa m;

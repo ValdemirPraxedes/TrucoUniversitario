@@ -35,7 +35,7 @@ public class CPUNormalTest {
 		m.setPartidas(1);
 		m.setRodadasPorPartidas(2);
 		m.setNumerosCartas(2);
-		m.ComeçarPartida();
+		m.ComecarPartida();
 		int rodada = 1;
 		while(m.hasRodada()){
 			while(m.getTurno().hasnext()){

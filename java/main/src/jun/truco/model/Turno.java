@@ -1,10 +1,7 @@
 package jun.truco.model;
-/**
- * Classe Turno determina ordem de sequência dos jogadores 
- * @author Valdemir Praxedes
- *
- */
+
 public class Turno {
+
 	private Jogador[] jogadores;
 	private int posicao;
 	

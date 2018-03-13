@@ -10,7 +10,7 @@ import jun.truco.model.Carta.Naipe;
 public class ForcaDasCartasTest {
 
 	@Test
-	public void forçaDaCartaComUmaCarta(){
+	public void forcaDaCartaComUmaCarta(){
 		Carta vira = new Carta(0, Naipe.Copas);
 		Mesa m = new Mesa();
 		Jogador j1 = new Humano("juninho");
@@ -20,14 +20,14 @@ public class ForcaDasCartasTest {
 		 m.addJogador(j1,j2,j3,j4);
 		 m.vira(vira);
 		 Carta c = new Carta(1,Naipe.Copas);
-		 m.ComeçarPartida();
+		 m.ComecarPartida();
 		 m.getForcaDasCartas().CartaJogada(j1, c);
 		 Assert.assertEquals(c, m.getForcaDasCartas().getMaiorCarta());
 		 
 	}
 	
 	@Test
-	public void forçaDaCartaComDuasCartasEmpache3(){
+	public void forcaDaCartaComDuasCartasEmpache3(){
 		Carta vira = new Carta(9, Naipe.Copas);
 		Mesa m = new Mesa();
 		
@@ -40,7 +40,7 @@ public class ForcaDasCartasTest {
 		 Carta c = new Carta(2,Naipe.Ouros);
 		 Carta c2 = new Carta(2,Naipe.Espadas);
 		 Carta c3 = new Carta(1,Naipe.Espadas);
-		 m.ComeçarPartida();
+		 m.ComecarPartida();
 		 m.getForcaDasCartas().CartaJogada(j1, c3);
 		 m.getForcaDasCartas().CartaJogada(j2, c);
 		 m.getForcaDasCartas().CartaJogada(j3, c2);
@@ -49,7 +49,7 @@ public class ForcaDasCartasTest {
 	}
 	
 	@Test
-	public void forçaDaCartaComDuasCartas(){
+	public void forcaDaCartaComDuasCartas(){
 		Carta vira = new Carta(9, Naipe.Copas);
 		Mesa m = new Mesa();
 		
@@ -61,7 +61,7 @@ public class ForcaDasCartasTest {
 		 m.vira(vira);
 		 Carta c = new Carta(1,Naipe.Ouros);
 		 Carta c2 = new Carta(2,Naipe.Espadas);
-		 m.ComeçarPartida();
+		 m.ComecarPartida();
 		 m.getForcaDasCartas().CartaJogada(j1, c);
 		 m.getForcaDasCartas().CartaJogada(j2, c2);
 		 Assert.assertEquals(c2, m.getForcaDasCartas().getMaiorCarta());
@@ -69,7 +69,7 @@ public class ForcaDasCartasTest {
 	}
 	
 	@Test
-	public void forçaDaCartaComManilha(){
+	public void forcaDaCartaComManilha(){
 		Carta vira = new Carta(2, Naipe.Copas);
 		Mesa m = new Mesa();
 		
@@ -83,7 +83,7 @@ public class ForcaDasCartasTest {
 		 Carta c2 = new Carta(3,Naipe.Espadas);
 		 Carta c3 = new Carta(1,Naipe.Ouros);
 		 Carta c4 = new Carta(7,Naipe.Espadas);
-		 m.ComeçarPartida();
+		 m.ComecarPartida();
 		 m.getForcaDasCartas().CartaJogada(j1, c);
 		 m.getForcaDasCartas().CartaJogada(j2, c2);
 		 m.getForcaDasCartas().CartaJogada(j2, c3);
@@ -93,7 +93,7 @@ public class ForcaDasCartasTest {
 	}
 	
 	@Test
-	public void forçaDaCartaComDuasManilha(){
+	public void forcaDaCartaComDuasManilha(){
 		Carta vira = new Carta(2, Naipe.Copas);
 		Mesa m = new Mesa();
 		m.vira(vira);
@@ -107,7 +107,7 @@ public class ForcaDasCartasTest {
 		 Carta c2 = new Carta(3,Naipe.Paus);
 		 Carta c3 = new Carta(3,Naipe.Ouros);
 		 Carta c4 = new Carta(7,Naipe.Espadas);
-		 m.ComeçarPartida();
+		 m.ComecarPartida();
 		 m.getForcaDasCartas().CartaJogada(j1, c);
 		 m.getForcaDasCartas().CartaJogada(j2, c2);
 		 m.getForcaDasCartas().CartaJogada(j2, c3);
@@ -116,7 +116,7 @@ public class ForcaDasCartasTest {
 	}
 	
 	@Test
-	public void forçaDaCartaComTodasAsManilhas(){
+	public void forcaDaCartaComTodasAsManilhas(){
 		Carta vira = new Carta(2, Naipe.Copas);
 		Mesa m = new Mesa();
 		m.vira(vira);
@@ -129,7 +129,7 @@ public class ForcaDasCartasTest {
 		 Carta c4 = new Carta(3,Naipe.Paus);
 		 Carta c3 = new Carta(3,Naipe.Ouros);
 		 Carta c2 = new Carta(3,Naipe.Espadas);
-		 m.ComeçarPartida();
+		 m.ComecarPartida();
 		 m.getForcaDasCartas().CartaJogada(j1, c);
 		 m.getForcaDasCartas().CartaJogada(j2, c2);
 		 m.getForcaDasCartas().CartaJogada(j2, c3);
@@ -152,7 +152,7 @@ public class ForcaDasCartasTest {
 		 Carta c2 = new Carta(1,Naipe.Espadas);
 		 Carta c3 = new Carta(1,Naipe.Ouros);
 		 Carta c4 = new Carta(1,Naipe.Paus);
-		 m.ComeçarPartida();
+		 m.ComecarPartida();
 		 m.getForcaDasCartas().CartaJogada(j1, c);
 		 m.getForcaDasCartas().CartaJogada(j2, c2);
 		 m.getForcaDasCartas().CartaJogada(j3, c3);
@@ -182,7 +182,7 @@ public class ForcaDasCartasTest {
 		 j4.receberCarta(new Carta(3,Naipe.Espadas));
 		 m.setRodadasPorPartidas(2);
 		 m.setNumerosCartas(2);
-		 m.ComeçarPartida();
+		 m.ComecarPartida();
 		
 		 
 		 while (m.hasRodada()) {
@@ -199,7 +199,7 @@ public class ForcaDasCartasTest {
 	}
 	
 	@Test
-	public void forçaDaCartaJogoTipico(){
+	public void forcaDaCartaJogoTipico(){
 		Carta vira = new Carta(4, Naipe.Copas);
 		Mesa m = new Mesa();
 		m.vira(vira);
@@ -212,7 +212,7 @@ public class ForcaDasCartasTest {
 		 Carta c2 = new Carta(9,Naipe.Copas);
 		 Carta c3 = new Carta(2,Naipe.Copas);
 		 Carta c4 = new Carta(1,Naipe.Copas);
-		 m.ComeçarPartida();
+		 m.ComecarPartida();
 		 m.getForcaDasCartas().CartaJogada(j1, c);
 		 m.getForcaDasCartas().CartaJogada(j2, c2);
 		 m.getForcaDasCartas().CartaJogada(j3, c3);
@@ -222,7 +222,7 @@ public class ForcaDasCartasTest {
 	}
 	
 	@Test
-	public void forçaDaCartaJogoTipicoNomeJogador(){
+	public void forcaDaCartaJogoTipicoNomeJogador(){
 		Carta vira = new Carta(4, Naipe.Copas);
 		Mesa m = new Mesa();
 		m.vira(vira);
@@ -235,7 +235,7 @@ public class ForcaDasCartasTest {
 		 Carta c2 = new Carta(9,Naipe.Copas);
 		 Carta c3 = new Carta(2,Naipe.Copas);
 		 Carta c4 = new Carta(1,Naipe.Copas);
-		 m.ComeçarPartida();
+		 m.ComecarPartida();
 		 m.getForcaDasCartas().CartaJogada(j1, c);
 		 m.getForcaDasCartas().CartaJogada(j2, c2);
 		 m.getForcaDasCartas().CartaJogada(j3, c3);

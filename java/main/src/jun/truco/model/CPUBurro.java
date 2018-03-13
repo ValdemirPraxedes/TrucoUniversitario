@@ -1,12 +1,7 @@
 package jun.truco.model;
 
 import java.util.Random;
-/**
- *  Classe concreta de CPU que simula um Jogador CPU sem técnicas de jogo.
- *  Classe CPUBurro estende da classe CPU
- * @author Valdemir Praxedes
- *
- */
+
 public class CPUBurro extends CPU{
 
 	public CPUBurro(String nome) {

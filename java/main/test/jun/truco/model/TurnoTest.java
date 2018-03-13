@@ -12,7 +12,7 @@ public class TurnoTest {
 		Jogador j = new Humano("juninho");
 		Jogador j2 = new Humano("L");
 		Mesa m = new Mesa(j,j2);
-		m.ComeçarPartida();
+		m.ComecarPartida();
 		Jogador[] js = {j2,j};
 		int x = 0;
 		while(m.getTurno().hasnext()){
@@ -27,7 +27,7 @@ public class TurnoTest {
 		Jogador j2 = new Humano("L");
 		Jogador j3 = new Humano("m");
 		Mesa m = new Mesa(j,j2,j3);
-		m.ComeçarPartida();
+		m.ComecarPartida();
 		Jogador[] js = {j2,j3,j};
 		int x = 0;
 		while(m.getTurno().hasnext()){
@@ -43,7 +43,7 @@ public class TurnoTest {
 		Jogador j3 = new Humano("m");
 		Jogador j4 = new Humano("m");
 		Mesa m = new Mesa(j,j2,j3,j4);
-		m.ComeçarPartida();
+		m.ComecarPartida();
 		Jogador[] js = {j2,j3,j4,j};
 		int x = 0;
 		while(m.getTurno().hasnext()){

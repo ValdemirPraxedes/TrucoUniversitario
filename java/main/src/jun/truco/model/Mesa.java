@@ -2,11 +2,7 @@ package jun.truco.model;
 
 import java.util.ArrayList;
 import java.util.List;
-/**
- * Classe Mesa inicia um jogo de Truco Universitário, 
- * @author Valdemir Praxedes
- *
- */
+
 public class Mesa {
 
 	
@@ -100,7 +96,7 @@ public class Mesa {
 		
 	}
 	
-	public void ComeçarPartida(){
+	public void ComecarPartida(){
 		forcaDasCartas = new ForcaDasCartas(mesa, manilha);
 	}
 	

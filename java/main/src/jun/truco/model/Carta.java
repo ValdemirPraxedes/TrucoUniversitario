@@ -1,10 +1,6 @@
 package jun.truco.model;
 
-/**
- * Classe que cria carta 
- * @author Valdermir Praxedes
- *
- */
+
 public class Carta {
 
 	public static enum Naipe {Paus, Ouros, Espadas,Copas};
