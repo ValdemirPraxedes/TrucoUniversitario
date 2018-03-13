@@ -5,7 +5,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.print.attribute.standard.NumberOfDocuments;
-
+/**
+ * Classe Abstrata Jogador
+ * @author Valdemir Praxedes
+ *
+ */
 public abstract class Jogador {
 	
 	protected String nome;
